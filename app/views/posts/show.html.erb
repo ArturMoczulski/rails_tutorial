@@ -1,3 +1,13 @@
 <p><strong>Title:</strong> <%= @post.title %></p>
 <p><strong>Text:</strong> <%= @post.text %></p>
-<%= link_to 'Posts list', posts_path %>
+
+<% if @post.comments.any? %>
+  <h2>Comments</h2>
+  <%= render @post.comments %>
+<% end %>
+
+<h2>Add a comment:</h2>
+<%= render 'comments/form' %>
+
+<%= link_to 'Posts list', posts_path %> | 
+<%= link_to 'Edit', edit_post_path(@post) %>
